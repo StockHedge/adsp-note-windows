@@ -1,0 +1,7 @@
+vendor/
+release/
+dist/
+*.zip
+node_modules/
+*Learning_Backup*.json
+learning-state.json*

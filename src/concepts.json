@@ -1,0 +1,1128 @@
+[
+  {
+    "id": "apriori",
+    "category": "A",
+    "subject": 3,
+    "title": "Apriori 알고리즘",
+    "english": "Apriori algorithm",
+    "easy": "자주 함께 나타나는 상품 묶음을 작은 묶음부터 찾아가는 알고리즘입니다.",
+    "definition": "빈발항목집합의 모든 부분집합도 빈발하다는 성질로 후보를 가지치기한다.",
+    "formula": "빈발 1항목 → 후보 생성 → 최소 지지도 검사 → 반복 → 규칙 생성·신뢰도 검사",
+    "example": "우유·빵이 함께 자주 팔리면 우유→빵 규칙을 평가한다.",
+    "exam": "비지도 연관분석; 지지도와 신뢰도 기준을 구별한다.",
+    "trap": "비빈발 부분집합을 포함한 큰 집합은 제거한다. 항목 간 독립성을 전제하지 않는다.",
+    "keywords": [
+      "Apriori",
+      "apriori",
+      "빈발",
+      "연관"
+    ]
+  },
+  {
+    "id": "frequent",
+    "category": "A",
+    "subject": 3,
+    "title": "빈발항목집합과 최소 지지도",
+    "english": "Frequent itemset / minimum support",
+    "easy": "전체 거래 중 충분히 자주 나타나는 항목 묶음입니다.",
+    "definition": "항목집합의 지지도가 사용자가 정한 최소 지지도 이상이면 빈발이다.",
+    "formula": "support(X) ≥ min_support",
+    "example": "100건 중 우유·빵이 20건, 최소 지지도 15%이면 빈발이다.",
+    "exam": "최소 지지도는 분석자가 정하는 임계값이다.",
+    "trap": "빈발이라는 것은 빈도가 충분하다는 뜻이며 인과나 수익성을 보장하지 않는다.",
+    "keywords": [
+      "빈발",
+      "지지도",
+      "Apriori"
+    ]
+  },
+  {
+    "id": "support",
+    "category": "A",
+    "subject": 3,
+    "title": "지지도",
+    "english": "Support",
+    "easy": "전체 거래 중 A와 B가 함께 나온 비율입니다.",
+    "definition": "규칙 A→B의 지지도는 결합사건의 확률이다.",
+    "formula": "support(A→B) = P(A∩B) = n(A∩B)/N",
+    "example": "100건 중 A와 B를 함께 산 거래가 20건이면 0.20.",
+    "exam": "분모는 전체 거래 수 N이다.",
+    "trap": "P(A) 또는 P(B|A)와 다르다.",
+    "keywords": [
+      "지지도",
+      "support",
+      "연관"
+    ]
+  },
+  {
+    "id": "confidence",
+    "category": "A",
+    "subject": 3,
+    "title": "신뢰도",
+    "english": "Confidence",
+    "easy": "A를 산 사람 중 B도 산 비율입니다.",
+    "definition": "규칙의 전제가 주어졌을 때 결론이 나타나는 조건부 확률이다.",
+    "formula": "confidence(A→B) = P(B|A) = P(A∩B)/P(A)",
+    "example": "A 구매 40건 중 A·B 동시 구매 20건이면 0.50.",
+    "exam": "A→B와 B→A의 신뢰도는 일반적으로 다르다.",
+    "trap": "B 자체가 흔하면 신뢰도만 높을 수 있다.",
+    "keywords": [
+      "신뢰도",
+      "confidence",
+      "연관"
+    ]
+  },
+  {
+    "id": "lift",
+    "category": "A",
+    "subject": 3,
+    "title": "향상도",
+    "english": "Lift",
+    "easy": "A를 샀을 때 B 구매가 평소보다 몇 배 흔한지 봅니다.",
+    "definition": "관측된 동시 발생을 두 사건이 독립일 때의 동시 발생과 비교한다.",
+    "formula": "Lift = P(A∩B)/[P(A)P(B)] = confidence/P(B)",
+    "example": "P(A)=.4, P(B)=.25, P(A∩B)=.2 → Lift=2.",
+    "exam": ">1 양의 연관, =1 독립 기준과 일치, <1 음의 연관.",
+    "trap": "양의 주변확률이 필요하다. 두 이진 사건에서 Lift=1은 독립이나 표본 추정치만으로 모집단 독립이 증명되지는 않는다.",
+    "keywords": [
+      "향상도",
+      "lift",
+      "연관"
+    ]
+  },
+  {
+    "id": "unsupervised",
+    "category": "A",
+    "subject": 3,
+    "title": "Apriori와 비지도학습",
+    "english": "Unsupervised association mining",
+    "easy": "정답 라벨 없이 거래 속 반복 패턴을 찾습니다.",
+    "definition": "연관규칙 학습은 일반적으로 비지도학습으로 분류한다.",
+    "formula": "입력: 거래의 항목 집합 → 출력: A→B 규칙",
+    "example": "고객의 구매 품목만으로 패턴을 찾는다.",
+    "exam": "Apriori는 대표적인 연관규칙 탐색 알고리즘이다.",
+    "trap": "독립을 가정해 학습하는 것이 아니다. 독립은 향상도 비교의 기준이다.",
+    "keywords": [
+      "Apriori",
+      "비지도",
+      "연관"
+    ]
+  },
+  {
+    "id": "causal",
+    "category": "F",
+    "subject": 3,
+    "title": "연관·상관관계와 인과관계",
+    "english": "Association vs causation",
+    "easy": "함께 변한다고 한쪽이 다른 쪽의 원인인 것은 아닙니다.",
+    "definition": "공통 원인, 역인과, 선택 편향 등이 관측된 관계를 만들 수 있다.",
+    "formula": "관측 연관 ≠ 인과효과",
+    "example": "더운 날 아이스크림 판매와 익사 사고가 모두 늘 수 있다.",
+    "exam": "회귀계수 유의성·높은 향상도만으로 인과를 단정하지 않는다.",
+    "trap": "인과를 보려면 연구 설계와 식별 가정이 필요하다.",
+    "keywords": [
+      "상관",
+      "인과",
+      "연관",
+      "회귀"
+    ]
+  },
+  {
+    "id": "linear",
+    "category": "B",
+    "subject": 3,
+    "title": "선형회귀분석",
+    "english": "Linear regression",
+    "easy": "설명변수로 결과의 평균을 설명하고 예측합니다.",
+    "definition": "조건부 평균이 회귀계수에 대해 선형인 모형이다.",
+    "formula": "Y = β₀ + β₁X + ε; Ŷ = b₀ + b₁X",
+    "example": "점수 예측값=40+5×공부시간이면 2시간에서 50점.",
+    "exam": "OLS는 잔차제곱합을 최소화한다.",
+    "trap": "계수에 대한 선형성이 핵심이다. X²를 넣어도 계수에 선형이면 선형회귀이다.",
+    "keywords": [
+      "선형회귀",
+      "회귀분석",
+      "lm("
+    ]
+  },
+  {
+    "id": "variables",
+    "category": "B",
+    "subject": 3,
+    "title": "독립변수와 종속변수",
+    "english": "Predictor / response",
+    "easy": "독립변수는 설명에 쓰고, 종속변수는 설명·예측하려는 결과입니다.",
+    "definition": "X는 설명변수, Y는 반응변수이다.",
+    "formula": "Y = f(X) + ε",
+    "example": "공부시간 X로 점수 Y를 예측한다.",
+    "exam": "복수 X를 쓰면 다중회귀이다.",
+    "trap": "독립변수라는 이름이 X들끼리 통계적으로 독립임을 뜻하지 않는다.",
+    "keywords": [
+      "독립변수",
+      "종속변수",
+      "설명변수"
+    ]
+  },
+  {
+    "id": "assumptions",
+    "category": "B",
+    "subject": 3,
+    "title": "선형회귀의 가정과 정규성",
+    "english": "Regression assumptions",
+    "easy": "평균 관계와 오차의 구조를 구분해서 점검합니다.",
+    "definition": "전형적 OLS 추론은 올바른 선형 평균, 외생성, 완전 공선성 부재와 오차의 분산·상관 조건을 다룬다.",
+    "formula": "E(ε|X)=0; Var(ε|X)=σ²; Cov(εᵢ,εⱼ|X)=0",
+    "example": "잔차-적합값 그림에서 곡선이나 깔때기 모양을 살핀다.",
+    "exam": "선형성·독립성·등분산성·정규성; 정규성은 소표본의 정확한 t·F 추론에 중요.",
+    "trap": "X나 Y 자체가 정규분포여야 한다는 뜻이 아니다. 정규성은 OLS 계산의 필수조건도 아니다.",
+    "keywords": [
+      "회귀",
+      "정규성",
+      "등분산",
+      "오차항"
+    ]
+  },
+  {
+    "id": "logistic",
+    "category": "B",
+    "subject": 3,
+    "title": "로지스틱 회귀분석",
+    "english": "Logistic regression",
+    "easy": "사건이 발생할 확률을 0과 1 사이로 예측합니다.",
+    "definition": "이진 Y의 조건부 확률에 대한 로그 오즈를 설명변수의 선형결합으로 모형화한다.",
+    "formula": "log[p/(1−p)] = β₀+ΣβⱼXⱼ",
+    "example": "연체 여부(0/1)를 잔고와 수입으로 예측한다.",
+    "exam": "회귀라는 이름이지만 대표적인 이진 분류 모형이다.",
+    "trap": "오차의 정규성·등분산성을 선형회귀와 똑같이 가정하지 않는다.",
+    "keywords": [
+      "로지스틱",
+      "logistic",
+      "이진"
+    ]
+  },
+  {
+    "id": "binary",
+    "category": "B",
+    "subject": 3,
+    "title": "연속형 예측과 이진 분류",
+    "english": "Regression vs binary classification",
+    "easy": "숫자의 크기를 맞히는 일과 두 범주를 나누는 일을 구분합니다.",
+    "definition": "회귀는 연속형 반응 예측, 이진 분류는 두 범주의 확률·판정을 다룬다.",
+    "formula": "선형회귀: 실수값 / 로지스틱: p∈(0,1)",
+    "example": "집값 예측은 회귀, 연체 여부는 분류.",
+    "exam": "로지스틱 확률에 임계값을 적용해 분류한다.",
+    "trap": "선형회귀를 0/1 Y에 적용하는 선형확률모형도 가능하지만 범위 밖 예측·이분산 문제가 있다.",
+    "keywords": [
+      "분류",
+      "로지스틱",
+      "선형회귀"
+    ]
+  },
+  {
+    "id": "sigmoid",
+    "category": "B",
+    "subject": 3,
+    "title": "시그모이드 함수",
+    "english": "Sigmoid / logistic function",
+    "easy": "실수 입력을 0~1 사이 값으로 바꾸는 S자 함수입니다.",
+    "definition": "로지스틱 회귀에서 선형 예측값 z를 확률 p로 연결한다.",
+    "formula": "p = 1/(1+e⁻ᶻ)",
+    "example": "z=0이면 p=.5, z=ln(3)이면 p=.75.",
+    "exam": "z 증가에 따라 p는 단조 증가한다.",
+    "trap": "z 한 단위 증가가 p의 일정한 증가량을 뜻하지 않는다.",
+    "keywords": [
+      "시그모이드",
+      "활성화",
+      "로지스틱"
+    ]
+  },
+  {
+    "id": "odds",
+    "category": "B",
+    "subject": 3,
+    "title": "오즈",
+    "english": "Odds",
+    "easy": "일어날 확률을 일어나지 않을 확률로 나눈 값입니다.",
+    "definition": "확률과 오즈는 서로 변환할 수 있지만 서로 다른 수치이다.",
+    "formula": "odds=p/(1−p); p=odds/(1+odds)",
+    "example": "p=.8 → odds=4, 즉 4:1.",
+    "exam": "확률은 0~1, 유한 오즈는 0 이상이며 1을 넘을 수 있다.",
+    "trap": "오즈 2는 확률 200%가 아니라 2/3이다.",
+    "keywords": [
+      "오즈",
+      "odds",
+      "로지스틱"
+    ]
+  },
+  {
+    "id": "odds-ratio",
+    "category": "B",
+    "subject": 3,
+    "title": "오즈비와 로지스틱 회귀계수",
+    "english": "Odds ratio / coefficient",
+    "easy": "다른 변수를 고정했을 때 X 변화로 오즈가 몇 배 되는지 봅니다.",
+    "definition": "상호작용 없는 모형에서 Xⱼ가 1 증가하면 로그 오즈는 βⱼ 증가하고 오즈는 exp(βⱼ)배가 된다.",
+    "formula": "OR = exp(βⱼ); Δlog(odds)=βⱼ",
+    "example": "β=ln(2)이면 오즈 2배. p=.2에서 odds .25→.5, 새 p=1/3.",
+    "exam": "β>0 → OR>1; β<0 → OR<1.",
+    "trap": "오즈비 2가 확률 2배를 의미하지 않는다. 상호작용이 있으면 조건별로 해석한다.",
+    "keywords": [
+      "오즈비",
+      "로지스틱",
+      "exp("
+    ]
+  },
+  {
+    "id": "multicol",
+    "category": "B",
+    "subject": 3,
+    "title": "다중공선성",
+    "english": "Multicollinearity",
+    "easy": "여러 설명변수가 비슷한 정보를 주어 각 계수를 따로 파악하기 어려운 현상입니다.",
+    "definition": "설명변수 사이에 강한 선형관계가 있는 상태이다.",
+    "formula": "완전 공선성: Xⱼ = 다른 X의 정확한 선형결합",
+    "example": "키(cm)와 키(m)를 동시에 넣으면 완전 공선성.",
+    "exam": "높은 공선성은 계수 분산을 키우고 추정치를 불안정하게 한다.",
+    "trap": "오차항 간 상관인 자기상관과 다르다. 단순한 쌍별 상관만으로 모든 공선성을 탐지하지 못한다.",
+    "keywords": [
+      "다중공선",
+      "공선성",
+      "VIF"
+    ]
+  },
+  {
+    "id": "vif",
+    "category": "B",
+    "subject": 3,
+    "title": "분산팽창계수",
+    "english": "Variance inflation factor / VIF",
+    "easy": "다른 설명변수 때문에 계수의 분산이 얼마나 커지는지 봅니다.",
+    "definition": "Xⱼ를 나머지 X로 회귀한 결정계수 Rⱼ²로 계산한다.",
+    "formula": "VIFⱼ = 1/(1−Rⱼ²)",
+    "example": "Rⱼ²=.9이면 VIF=10.",
+    "exam": "5 또는 10은 흔히 쓰는 점검 기준이며 절대 법칙은 아니다.",
+    "trap": "VIF는 오차의 자기상관을 검정하지 않는다.",
+    "keywords": [
+      "VIF",
+      "분산팽창",
+      "다중공선"
+    ]
+  },
+  {
+    "id": "autocorr",
+    "category": "B",
+    "subject": 3,
+    "title": "자기상관과 다중공선성 비교",
+    "english": "Autocorrelation vs multicollinearity",
+    "easy": "자기상관은 시차를 둔 동일 계열의 상관입니다. 회귀에서는 주로 오차항 사이를 봅니다.",
+    "definition": "Cov(εₜ,εₜ₋ₖ)≠0이면 해당 시차의 오차 자기상관이 있다.",
+    "formula": "DW ≈ 2(1−r₁)",
+    "example": "DW≈2는 1차 자기상관 없음의 단서, 작으면 양의 상관의 단서.",
+    "exam": "자기상관: 오차 간 / 다중공선성: 설명변수 간.",
+    "trap": "DW=2가 독립성을 증명하지 않는다. 검정 적용 조건과 임계값을 확인해야 한다.",
+    "keywords": [
+      "자기상관",
+      "더빈",
+      "Durbin",
+      "독립성"
+    ]
+  },
+  {
+    "id": "population",
+    "category": "C",
+    "subject": 3,
+    "title": "모집단과 표본",
+    "english": "Population / sample",
+    "easy": "알고 싶은 전체가 모집단이고 실제 관측한 일부가 표본입니다.",
+    "definition": "추론의 대상과 데이터를 수집한 집합을 구분한다.",
+    "formula": "모집단 크기 N / 표본 크기 n",
+    "example": "전국 성인의 평균 키를 알고자 1,000명을 조사한다.",
+    "exam": "표본의 대표성과 추출 방식을 함께 확인한다.",
+    "trap": "표본이 크더라도 선택 편향이 사라지는 것은 아니다.",
+    "keywords": [
+      "모집단",
+      "표본",
+      "추출"
+    ]
+  },
+  {
+    "id": "parameter",
+    "category": "C",
+    "subject": 3,
+    "title": "모수와 통계량",
+    "english": "Parameter / statistic",
+    "easy": "모수는 모집단의 특성값, 통계량은 표본으로 계산한 값입니다.",
+    "definition": "모수는 보통 미지의 고정값, 통계량은 표본에 따라 변하는 확률변수이다.",
+    "formula": "모수: μ, σ² / 통계량: x̄, s²",
+    "example": "모평균 μ를 표본평균 x̄로 추정한다.",
+    "exam": "모수와 추정량·추정값을 구분한다.",
+    "trap": "표본평균의 숫자 하나는 관측된 추정값이다.",
+    "keywords": [
+      "모수",
+      "통계량",
+      "추정"
+    ]
+  },
+  {
+    "id": "means",
+    "category": "C",
+    "subject": 3,
+    "title": "모평균과 표본평균",
+    "english": "Population / sample mean",
+    "easy": "전체의 평균을 표본의 평균으로 추정합니다.",
+    "definition": "동일한 분포의 독립표본에서 표본평균은 모평균의 불편추정량이다.",
+    "formula": "μ=E(X); x̄=Σxᵢ/n; E(X̄)=μ",
+    "example": "2,4,6의 표본평균은 4.",
+    "exam": "표본이 바뀌면 표본평균도 바뀐다.",
+    "trap": "표본평균이 관측 때마다 모평균과 같은 것은 아니다.",
+    "keywords": [
+      "모평균",
+      "표본평균",
+      "평균"
+    ]
+  },
+  {
+    "id": "variance-pop",
+    "category": "C",
+    "subject": 3,
+    "title": "모분산과 표본분산",
+    "english": "Population / sample variance",
+    "easy": "모집단의 퍼짐을 표본으로 추정할 때 자유도 보정을 합니다.",
+    "definition": "통상 표본분산 s²는 미지 모평균을 표본평균으로 대체한 데 대한 n−1 보정을 사용한다.",
+    "formula": "σ²=E[(X−μ)²]; s²=Σ(xᵢ−x̄)²/(n−1)",
+    "example": "2,4,6이면 s²=(4+0+4)/2=4.",
+    "exam": "유한 모집단 전체의 기술적 분산은 N으로 나눈다.",
+    "trap": "표본 데이터의 기술적 분산을 n으로 계산하는 문맥도 있으므로 정의를 확인한다.",
+    "keywords": [
+      "모분산",
+      "표본분산",
+      "분산"
+    ]
+  },
+  {
+    "id": "parametric",
+    "category": "C",
+    "subject": 3,
+    "title": "모수검정",
+    "english": "Parametric test",
+    "easy": "분포 모형과 모수에 관한 가설을 세워 검정합니다.",
+    "definition": "정규모형의 평균 검정처럼 특정 확률모형의 가정을 활용한다.",
+    "formula": "일표본 t: H₀: μ=μ₀",
+    "example": "평균 무게가 500g인지 t검정으로 평가한다.",
+    "exam": "t검정·분산분석 등이 대표 예이다.",
+    "trap": "모든 모수검정이 정규분포를 전제하는 것은 아니다.",
+    "keywords": [
+      "모수 검정",
+      "모수검정",
+      "t-검정",
+      "t 검정"
+    ]
+  },
+  {
+    "id": "nonparametric",
+    "category": "C",
+    "subject": 3,
+    "title": "비모수검정과 필요한 가정",
+    "english": "Nonparametric test",
+    "easy": "분포의 형태를 덜 엄격하게 정하고 순위 등을 활용합니다.",
+    "definition": "특정한 유한차원 모수 모형에 덜 의존하지만 독립성·교환가능성·대칭성 등 검정별 가정이 있다.",
+    "formula": "독립 2집단: Mann–Whitney / 대응: Wilcoxon signed-rank",
+    "example": "서열척도 자료는 순위 기반 검정을 고려한다.",
+    "exam": "비모수검정=가정 없는 검정이라는 문장은 틀리다.",
+    "trap": "Mann–Whitney를 단순 중앙값 검정으로 해석하려면 분포 형태 등의 추가 조건이 필요하다.",
+    "keywords": [
+      "비모수",
+      "순위",
+      "윌콕슨",
+      "Mann"
+    ]
+  },
+  {
+    "id": "t-test",
+    "category": "C",
+    "subject": 3,
+    "title": "t검정",
+    "english": "Student t-test",
+    "easy": "평균 차이가 표본의 우연한 흔들림으로 설명될지 평가합니다.",
+    "definition": "추정된 표준오차로 평균 차이를 표준화한 통계량을 사용한다.",
+    "formula": "t = (추정된 평균 차이 − 귀무값)/표준오차",
+    "example": "평균이 50인지, 두 집단 평균이 같은지 검정한다.",
+    "exam": "모분산을 모르는 평균 검정에서 많이 쓰인다.",
+    "trap": "작은 표본이면 항상 t검정을 할 수 있다는 뜻은 아니다.",
+    "keywords": [
+      "t검정",
+      "t-검정",
+      "t 검정",
+      "t.test"
+    ]
+  },
+  {
+    "id": "one-t",
+    "category": "C",
+    "subject": 3,
+    "title": "일표본 t검정",
+    "english": "One-sample t-test",
+    "easy": "한 집단 평균을 기준값과 비교합니다.",
+    "definition": "독립 정규표본이면 귀무가설 아래 통계량이 정확히 t분포를 따른다.",
+    "formula": "t=(x̄−μ₀)/(s/√n), df=n−1",
+    "example": "n=100, x̄=51.5, s=4.42, μ₀=50 → t≈3.39.",
+    "exam": "자유도에 1을 더하면 표본 수이다.",
+    "trap": "비정규 모집단에서 정확한 t분포는 보장되지 않으며 큰 표본의 근사에는 추가 조건이 필요하다.",
+    "keywords": [
+      "일표본",
+      "One Sample",
+      "t.test"
+    ]
+  },
+  {
+    "id": "ind-t",
+    "category": "C",
+    "subject": 3,
+    "title": "독립표본 t검정",
+    "english": "Independent two-sample t-test",
+    "easy": "서로 다른 두 집단의 평균을 비교합니다.",
+    "definition": "두 표본 간 독립성을 가정하며 Welch 방식은 등분산을 요구하지 않는다.",
+    "formula": "Welch t=(x̄₁−x̄₂)/√(s₁²/n₁+s₂²/n₂)",
+    "example": "서로 다른 학생으로 구성된 두 수업의 점수 비교.",
+    "exam": "등분산을 가정하는 pooled t와 Welch t를 구별한다.",
+    "trap": "독립표본 t검정이 언제나 등분산을 가정하는 것은 아니다.",
+    "keywords": [
+      "독립표본",
+      "Welch",
+      "Two Sample"
+    ]
+  },
+  {
+    "id": "paired-t",
+    "category": "C",
+    "subject": 3,
+    "title": "대응표본 t검정",
+    "english": "Paired t-test",
+    "easy": "같은 대상의 전후 차이를 먼저 구해 검정합니다.",
+    "definition": "서로 독립인 쌍별 차이 d의 평균을 일표본 t검정한다.",
+    "formula": "t=(d̄−d₀)/(s_d/√n), df=n−1",
+    "example": "환자 10명의 A−B 평균 차이가 −1.58이면 A가 1.58 작다.",
+    "exam": "정규성은 두 측정값 각각이 아니라 차이의 분포에 적용한다.",
+    "trap": "항상 독립표본 검정보다 검정력이 높은 것은 아니다.",
+    "keywords": [
+      "대응표본",
+      "Paired",
+      "대응 표본"
+    ]
+  },
+  {
+    "id": "hypothesis",
+    "category": "C",
+    "subject": 3,
+    "title": "귀무가설과 대립가설",
+    "english": "Null / alternative hypothesis",
+    "easy": "기준 주장을 귀무가설로 두고 자료가 그 주장에 얼마나 반하는지 봅니다.",
+    "definition": "H₀와 H₁은 설정한 검정에서 서로 배타적인 모수 주장이다.",
+    "formula": "H₀: μ=50 / H₁: μ≠50",
+    "example": "신약 효과 차이가 없다는 H₀에 반하는 증거를 평가한다.",
+    "exam": "단측·양측 가설은 자료를 보기 전에 정한다.",
+    "trap": "대립가설은 희망하는 결론이라는 이유로 참이 되지 않는다.",
+    "keywords": [
+      "귀무",
+      "대립",
+      "가설검정"
+    ]
+  },
+  {
+    "id": "pvalue",
+    "category": "C",
+    "subject": 3,
+    "title": "유의수준과 p값",
+    "english": "Significance level / p-value",
+    "easy": "p값은 귀무가설과 검정 모형 아래 현재처럼 극단적인 결과가 나올 확률입니다.",
+    "definition": "유의수준 α는 사전에 정한 제1종 오류 확률의 상한 기준이다.",
+    "formula": "p<α → H₀ 기각 / p≥α → 기각 실패",
+    "example": "p=.01, α=.05이면 기각한다. α=.001이면 기각 실패.",
+    "exam": "통계적 유의성과 효과 크기·실무 중요성을 구분한다.",
+    "trap": "p는 H₀가 참일 확률이 아니다. 경계 p=α의 판정 관례는 검정 정의에 따르며 반올림 출력도 주의한다.",
+    "keywords": [
+      "p-value",
+      "p값",
+      "유의수준",
+      "Pr(>",
+      "t",
+      ")"
+    ]
+  },
+  {
+    "id": "reject",
+    "category": "C",
+    "subject": 3,
+    "title": "귀무가설 기각과 기각 실패",
+    "english": "Reject vs fail to reject",
+    "easy": "증거가 부족한 것과 귀무가설이 참임을 증명한 것은 다릅니다.",
+    "definition": "기각은 H₀에 반하는 증거가 기준을 넘었다는 뜻이고, 기각 실패는 그 증거가 충분하지 않다는 뜻이다.",
+    "formula": "제1종: 참인 H₀ 기각 / 제2종: 거짓인 H₀ 기각 실패",
+    "example": "p=.3이라고 효과가 없다고 확정할 수 없다.",
+    "exam": "시험의 대립가설 채택은 대립가설 지지로 이해한다.",
+    "trap": "기각해도 대립가설이 100% 증명된 것은 아니다.",
+    "keywords": [
+      "기각",
+      "채택",
+      "가설검정"
+    ]
+  },
+  {
+    "id": "scientific",
+    "category": "C",
+    "subject": 3,
+    "title": "R 출력의 과학적 표기법",
+    "english": "Scientific notation",
+    "easy": "e 뒤의 숫자는 10의 지수입니다.",
+    "definition": "a e b는 a×10ᵇ이다.",
+    "formula": "1.3e−06 = 1.3×10⁻⁶ = 0.0000013",
+    "example": "2.43e−05=.0000243이므로 .05보다 작다.",
+    "exam": "음의 지수가 작아질수록 작은 양수가 된다.",
+    "trap": "e−06을 −6이나 1.3−6으로 읽지 않는다.",
+    "keywords": [
+      "e-06",
+      "e-05",
+      "p-value",
+      "R 출력"
+    ]
+  },
+  {
+    "id": "variance",
+    "category": "D",
+    "subject": 3,
+    "title": "분산과 데이터의 퍼짐",
+    "english": "Variance / dispersion",
+    "easy": "값들이 평균에서 얼마나 떨어져 있는지 제곱으로 측정합니다.",
+    "definition": "평균 편차의 제곱의 기대값이다.",
+    "formula": "Var(X)=E[(X−E(X))²]; Var(aX+b)=a²Var(X)",
+    "example": "{4,5,6}보다 {0,5,10}이 분산이 크다.",
+    "exam": "모든 값에 상수를 더하면 분산은 변하지 않는다.",
+    "trap": "분산의 단위는 원자료 단위의 제곱이며 이상값의 영향을 받는다.",
+    "keywords": [
+      "분산",
+      "퍼짐",
+      "산포"
+    ]
+  },
+  {
+    "id": "sd",
+    "category": "D",
+    "subject": 3,
+    "title": "표준편차",
+    "english": "Standard deviation",
+    "easy": "퍼짐을 원자료와 같은 단위로 나타냅니다.",
+    "definition": "분산의 음이 아닌 제곱근이다.",
+    "formula": "SD(X)=√Var(X)",
+    "example": "분산이 25점²이면 표준편차는 5점.",
+    "exam": "표준편차와 표준오차는 다르다.",
+    "trap": "표본 수가 커진다고 원자료의 표준편차가 자동으로 0이 되지 않는다.",
+    "keywords": [
+      "표준편차",
+      "분산",
+      "산포"
+    ]
+  },
+  {
+    "id": "normal",
+    "category": "D",
+    "subject": 3,
+    "title": "정규분포",
+    "english": "Normal distribution",
+    "easy": "평균을 중심으로 좌우 대칭인 종 모양 분포입니다.",
+    "definition": "평균 μ와 분산 σ²가 위치와 퍼짐을 결정하는 연속형 분포이다.",
+    "formula": "X~N(μ,σ²); Z=(X−μ)/σ~N(0,1)",
+    "example": "정규분포에서 평균±1σ 약68.27%, ±2σ 약95.45%.",
+    "exam": "평균=중앙값=최빈값.",
+    "trap": "모든 실제 데이터가 정규분포라는 뜻은 아니다. 밀도와 한 점의 확률을 구분한다.",
+    "keywords": [
+      "정규분포",
+      "정규성"
+    ]
+  },
+  {
+    "id": "distributions",
+    "category": "D",
+    "subject": 3,
+    "title": "정규·t·F·카이제곱분포",
+    "english": "Normal / t / F / chi-squared",
+    "easy": "검정통계량의 분포는 무엇을 검정하는지에 따라 다릅니다.",
+    "definition": "t는 평균 추론, F는 분산 비와 ANOVA, χ²는 빈도 검정·정규모집단 분산 추론 등에 쓰인다.",
+    "formula": "Z~N(0,1), U~χ²(ν), 독립이면 t=Z/√(U/ν)",
+    "example": "정규와 t는 대칭, F와 χ²는 음수가 없고 형태는 자유도에 따라 바뀐다.",
+    "exam": "t²(ν)=F(1,ν); χ²는 독립 표준정규 제곱합.",
+    "trap": "t분포의 평균·분산 존재 여부도 자유도에 의존한다.",
+    "keywords": [
+      "t분포",
+      "F분포",
+      "카이제곱",
+      "정규분포"
+    ]
+  },
+  {
+    "id": "clt",
+    "category": "D",
+    "subject": 3,
+    "title": "중심극한정리",
+    "english": "Central limit theorem / CLT",
+    "easy": "원자료가 비대칭이어도 큰 표본의 평균들은 정규분포에 가까워질 수 있습니다.",
+    "definition": "대표적 iid·유한 양의 분산 조건에서 표준화한 표본평균은 n 증가 시 표준정규분포로 분포수렴한다.",
+    "formula": "√n(X̄−μ)/σ ⇒ N(0,1)",
+    "example": "치우친 소득분포에서 100명씩 뽑아 평균을 반복 계산한다.",
+    "exam": "변하는 대상은 모집단이 아니라 표본평균의 분포이다.",
+    "trap": "n=30은 보편적 보장 기준이 아니다. 코시분포처럼 유한 분산이 없는 경우 일반 정리를 적용할 수 없다.",
+    "keywords": [
+      "중심극한",
+      "표본평균",
+      "CLT"
+    ]
+  },
+  {
+    "id": "sampling",
+    "category": "D",
+    "subject": 3,
+    "title": "표본평균의 분포",
+    "english": "Sampling distribution of the mean",
+    "easy": "같은 크기로 반복 추출해서 구한 평균들의 분포입니다.",
+    "definition": "iid 표본의 평균은 모평균 주변에 분포하며 그 분산은 원자료 분산의 1/n이다.",
+    "formula": "E(X̄)=μ; Var(X̄)=σ²/n",
+    "example": "n=100, σ=20이면 X̄의 표준편차는 2.",
+    "exam": "정규모집단이면 모든 n에서 표본평균이 정확히 정규분포이다.",
+    "trap": "하나의 표본 안에서 개별 관측값들의 분포와 다르다.",
+    "keywords": [
+      "표본평균",
+      "중심극한",
+      "표준오차"
+    ]
+  },
+  {
+    "id": "se",
+    "category": "D",
+    "subject": 3,
+    "title": "표준오차와 표본 크기",
+    "english": "Standard error / sample size",
+    "easy": "추정값이 표본마다 얼마나 흔들리는지 나타냅니다.",
+    "definition": "표준오차는 통계량의 표집분포의 표준편차이다.",
+    "formula": "SE(X̄)=σ/√n; 추정 SE=s/√n",
+    "example": "n을 25에서 100으로 늘리면 평균의 SE는 절반이 된다.",
+    "exam": "n 증가 → 표본평균 분포 폭 감소(독립·동일 분포 기준).",
+    "trap": "원자료가 정규분포로 변하거나 σ 자체가 줄어든다는 뜻은 아니다.",
+    "keywords": [
+      "표준오차",
+      "표본 크기",
+      "표본평균"
+    ]
+  },
+  {
+    "id": "normality",
+    "category": "D",
+    "subject": 3,
+    "title": "정규성 가정",
+    "english": "Normality assumption",
+    "easy": "어떤 대상이 정규분포를 따른다고 가정하는지 먼저 확인합니다.",
+    "definition": "검정·모형마다 정규성이 요구되는 대상과 정확 추론의 조건이 다르다.",
+    "formula": "일표본 t: X / 대응 t: 차이 d / 선형회귀: ε|X",
+    "example": "회귀에서 설명변수의 히스토그램이 비대칭이어도 그 자체로 정규성 위반은 아니다.",
+    "exam": "Q-Q plot은 정규성 진단에 사용한다.",
+    "trap": "정규성 검정의 기각 실패가 정규분포의 증명은 아니다.",
+    "keywords": [
+      "정규성",
+      "정규분포",
+      "Q-Q"
+    ]
+  },
+  {
+    "id": "stationary",
+    "category": "E",
+    "subject": 3,
+    "title": "시계열 정상성",
+    "english": "Stationarity",
+    "easy": "시간이 흘러도 평균과 분산, 시차별 공분산 구조가 일정한 성질입니다.",
+    "definition": "약정상성은 유한한 2차 모멘트와 시점 불변 평균 및 시차만의 함수인 공분산을 요구한다.",
+    "formula": "E(Xₜ)=μ; Var(Xₜ)=σ²; Cov(Xₜ,Xₜ₋ₖ)=γ(k)",
+    "example": "|φ|<1이고 정상 상태에서 시작한 AR(1)은 시차 자기상관을 가지면서 정상일 수 있다.",
+    "exam": "평균 일정·분산 일정·공분산은 시차에만 의존.",
+    "trap": "분산 일정 하나만으로 충분하지 않으며, 정상성은 독립성이나 정규성을 뜻하지 않는다.",
+    "keywords": [
+      "정상성",
+      "정상 시계열",
+      "ARIMA"
+    ]
+  },
+  {
+    "id": "normalize",
+    "category": "E",
+    "subject": 3,
+    "title": "정규화",
+    "english": "Normalization",
+    "easy": "변수의 범위나 크기를 일정한 기준에 맞춥니다.",
+    "definition": "문맥에 따라 뜻이 다르며 여기서는 주로 min–max 스케일링을 뜻한다.",
+    "formula": "x′=(x−min)/(max−min)",
+    "example": "10,20,30 → 0,.5,1.",
+    "exam": "거리 기반 학습에서 변수 척도의 영향을 조정한다.",
+    "trap": "정규분포로 바꾸거나 시계열을 정상화하는 작업과 다르다. max=min이면 별도 처리한다.",
+    "keywords": [
+      "정규화",
+      "정규분포",
+      "스케일"
+    ]
+  },
+  {
+    "id": "standardize",
+    "category": "E",
+    "subject": 3,
+    "title": "표준화",
+    "english": "Standardization",
+    "easy": "중심을 빼고 표준편차로 나눠 척도를 맞춥니다.",
+    "definition": "z점수 변환으로 평균 0, 표준편차 1로 맞춘다(같은 계산 기준일 때).",
+    "formula": "z=(x−x̄)/s",
+    "example": "평균70, 표준편차10에서 80점은 z=1.",
+    "exam": "학습 데이터의 평균·표준편차를 시험 데이터에도 적용한다.",
+    "trap": "표준화해도 원분포 모양이 정규분포가 되지는 않는다. s=0은 별도 처리한다.",
+    "keywords": [
+      "표준화",
+      "스케일",
+      "정규화"
+    ]
+  },
+  {
+    "id": "stationarize",
+    "category": "E",
+    "subject": 3,
+    "title": "정상화와 정규화의 차이",
+    "english": "Stationarization vs normalization",
+    "easy": "정상화는 시간 구조를, 정규화는 주로 값의 척도를 다룹니다.",
+    "definition": "차분·추세 제거·변환 등으로 시계열의 비정상 요인을 줄이고 정상성을 재진단한다.",
+    "formula": "정규화: 범위 조정 / 정상화: 시점 의존 통계구조 조정",
+    "example": "주가의 min–max 변환은 추세를 없애지 않는다.",
+    "exam": "정규화·표준화·정상화는 서로 다른 목적이다.",
+    "trap": "정상화는 어떤 변환을 했다는 사실보다 변환 후 성질을 확인하는 것이 중요하다.",
+    "keywords": [
+      "정상화",
+      "정규화",
+      "정상성"
+    ]
+  },
+  {
+    "id": "detrend",
+    "category": "E",
+    "subject": 3,
+    "title": "추세 제거",
+    "english": "Detrending",
+    "easy": "장기적으로 오르거나 내리는 흐름을 추정해 뺍니다.",
+    "definition": "결정적 추세 g(t)를 제거한 잔여 계열을 분석한다.",
+    "formula": "Yₜ=Xₜ−ĝ(t)",
+    "example": "Xₜ=10+2t+εₜ에서 10+2t를 뺀다.",
+    "exam": "결정적 추세와 확률적 추세를 구분한다.",
+    "trap": "추세를 뺀 뒤에도 단위근·계절성·이분산이 남을 수 있어 항상 정상성이 확보되지는 않는다.",
+    "keywords": [
+      "추세",
+      "정상성",
+      "분해시계열"
+    ]
+  },
+  {
+    "id": "difference",
+    "category": "E",
+    "subject": 3,
+    "title": "차분",
+    "english": "Differencing",
+    "easy": "현재 값에서 과거 값을 빼 변화량을 만듭니다.",
+    "definition": "1차 차분이나 계절 차분으로 확률적 추세·계절 단위근 등을 다룬다.",
+    "formula": "ΔXₜ=Xₜ−Xₜ₋₁; 계절차분=Xₜ−Xₜ₋ₛ",
+    "example": "100,103,107 → 3,4.",
+    "exam": "ARIMA(p,d,q)의 d는 비계절 차분 차수이다.",
+    "trap": "차분으로 모든 비정상성이 해결되지 않는다. 과차분은 불필요한 구조를 만들 수 있다.",
+    "keywords": [
+      "차분",
+      "ARIMA",
+      "정상성"
+    ]
+  },
+  {
+    "id": "log",
+    "category": "E",
+    "subject": 3,
+    "title": "로그 변환과 분산 안정화",
+    "english": "Log transformation",
+    "easy": "수준이 클수록 변동 폭도 커질 때 로그가 도움이 될 수 있습니다.",
+    "definition": "양수 데이터에 로그를 취하면 곱셈 관계가 덧셈으로 바뀐다.",
+    "formula": "log(ab)=log(a)+log(b); Δlog(Xₜ)≈증가율",
+    "example": "매출이 배가 될 때 흔들림도 배가 되면 로그 척도를 고려한다.",
+    "exam": "차분은 평균 구조, 로그는 분산 안정화에 흔히 사용한다.",
+    "trap": "로그가 항상 분산을 일정하게 하지는 않는다. 0·음수에 바로 적용할 수 없다.",
+    "keywords": [
+      "로그",
+      "분산",
+      "안정화"
+    ]
+  },
+  {
+    "id": "stabilize",
+    "category": "E",
+    "subject": 3,
+    "title": "평균·분산의 안정화",
+    "english": "Stabilizing mean and variance",
+    "easy": "어떤 통계적 성질이 시간에 따라 바뀌는지에 맞춰 변환합니다.",
+    "definition": "추세·단위근·계절성·조건부 변동성 등 원인이 다르므로 진단과 변환도 달라진다.",
+    "formula": "평균 변화 → 차분·추세 제거 / 수준-분산 관계 → 로그 등",
+    "example": "추세를 제거한 뒤에도 변동 폭이 커지면 분산 문제를 별도 점검한다.",
+    "exam": "변환 후 평균·분산·자기공분산을 다시 확인한다.",
+    "trap": "추세 제거만으로 정상성이 보장되지 않으며 모든 시계열 예측법이 정상성을 요구하는 것도 아니다.",
+    "keywords": [
+      "정상성",
+      "추세",
+      "로그",
+      "차분"
+    ]
+  },
+  {
+    "id": "correlation",
+    "category": "F",
+    "subject": 3,
+    "title": "상관계수와 양·음의 상관",
+    "english": "Correlation coefficient",
+    "easy": "두 변수가 같이 커지는지, 한쪽이 커질 때 다른 쪽이 작아지는지 봅니다.",
+    "definition": "피어슨 상관계수는 두 변수의 선형 관계의 방향과 강도를 표준화해 나타낸다.",
+    "formula": "−1≤r≤1; r>0 양 / r<0 음",
+    "example": "공부시간과 점수의 r=.7이면 양의 선형 관계가 관측된다.",
+    "exam": "부호는 방향, 절대값은 선형 강도이다.",
+    "trap": "강함의 경계는 문맥에 따라 다르며 인과를 뜻하지 않는다.",
+    "keywords": [
+      "상관계수",
+      "상관분석",
+      "양의 상관",
+      "음의 상관"
+    ]
+  },
+  {
+    "id": "pearson",
+    "category": "F",
+    "subject": 3,
+    "title": "피어슨 상관계수",
+    "english": "Pearson correlation",
+    "easy": "공분산을 두 표준편차로 나눠 선형 연관을 측정합니다.",
+    "definition": "유한 양의 분산을 가진 두 변수의 표준화된 공분산이다.",
+    "formula": "ρ=Cov(X,Y)/(σₓσᵧ)",
+    "example": "X가 −1,0,1에서 균등하고 Y=X²이면 상관은 0이지만 완전히 의존한다.",
+    "exam": "r=0은 선형 상관이 없다는 뜻이다.",
+    "trap": "상관 0이 일반적으로 독립을 뜻하지 않는다. 공동정규 등 추가 조건에서는 예외적 연결이 있다.",
+    "keywords": [
+      "피어슨",
+      "Pearson",
+      "상관계수"
+    ]
+  },
+  {
+    "id": "spearman",
+    "category": "F",
+    "subject": 3,
+    "title": "스피어만 상관계수",
+    "english": "Spearman rank correlation",
+    "easy": "값의 순위가 함께 움직이는지 측정합니다.",
+    "definition": "두 변수의 순위에 대한 피어슨 상관계수로 단조 관계를 평가한다.",
+    "formula": "동점 없을 때 rₛ=1−6Σdᵢ²/[n(n²−1)]",
+    "example": "값이 급격히 커져도 순서가 같으면 순위 상관은 높다.",
+    "exam": "서열자료와 비선형 단조 관계에 활용한다.",
+    "trap": "모든 비선형 관계를 탐지하는 것은 아니다. 동점이 있으면 순위 처리를 반영한다.",
+    "keywords": [
+      "스피어만",
+      "Spearman",
+      "순위상관"
+    ]
+  },
+  {
+    "id": "euclidean",
+    "category": "F",
+    "subject": 3,
+    "title": "유클리드 거리",
+    "english": "Euclidean distance",
+    "easy": "두 점 사이의 직선 거리입니다.",
+    "definition": "각 좌표 차이 제곱합의 제곱근이다.",
+    "formula": "d(x,y)=√Σ(xⱼ−yⱼ)²",
+    "example": "(0,0)과 (3,4)의 거리는 5.",
+    "exam": "민코프스키 p=2이다.",
+    "trap": "변수 단위가 다르면 한 변수의 척도가 거리를 지배할 수 있다.",
+    "keywords": [
+      "유클리드",
+      "유클리디안",
+      "Euclidean",
+      "거리"
+    ]
+  },
+  {
+    "id": "manhattan",
+    "category": "F",
+    "subject": 3,
+    "title": "맨해튼 거리",
+    "english": "Manhattan / city-block distance",
+    "easy": "격자 도로를 따라 이동하듯 좌표별 차이를 더합니다.",
+    "definition": "좌표 차이 절댓값의 합이다.",
+    "formula": "d(x,y)=Σ|xⱼ−yⱼ|",
+    "example": "(0,0)과 (3,4)의 거리는 7.",
+    "exam": "민코프스키 p=1이다.",
+    "trap": "직선 거리 5와 혼동하지 않는다.",
+    "keywords": [
+      "맨해튼",
+      "Manhattan",
+      "민코프스키"
+    ]
+  },
+  {
+    "id": "mahalanobis",
+    "category": "F",
+    "subject": 3,
+    "title": "마할라노비스 거리와 공분산",
+    "english": "Mahalanobis distance",
+    "easy": "방향마다 다른 퍼짐과 변수 간 상관을 반영한 거리입니다.",
+    "definition": "공분산 행렬의 역행렬로 차이를 가중하는 거리이다.",
+    "formula": "d=√[(x−μ)ᵀΣ⁻¹(x−μ)]",
+    "example": "높은 키와 높은 체중이 함께 흔하면 그 방향의 차이는 덜 이례적일 수 있다.",
+    "exam": "분산과 공분산을 함께 반영한다.",
+    "trap": "Σ가 특이하면 그대로 역행렬을 쓸 수 없다. 정규성은 거리 계산 자체의 필수조건이 아니다.",
+    "keywords": [
+      "마할라노비스",
+      "공분산",
+      "Mahalanobis"
+    ]
+  },
+  {
+    "id": "minkowski",
+    "category": "F",
+    "subject": 3,
+    "title": "민코프스키 거리",
+    "english": "Minkowski distance",
+    "easy": "맨해튼과 유클리드를 하나의 식으로 묶은 거리입니다.",
+    "definition": "p≥1일 때 p차 노름에 기반한 거리이다.",
+    "formula": "dₚ=(Σ|xⱼ−yⱼ|ᵖ)¹⁄ᵖ",
+    "example": "(0,0),(3,4): p=1이면7, p=2이면5.",
+    "exam": "p=1 맨해튼, p=2 유클리드, p→∞ 최대 좌표차.",
+    "trap": "0<p<1이면 일반적으로 삼각부등식을 만족하지 않는다.",
+    "keywords": [
+      "민코프스키",
+      "Minkowski",
+      "거리"
+    ]
+  },
+  {
+    "id": "cmmi",
+    "category": "G",
+    "subject": 2,
+    "title": "CMMI 모델과 원래 성숙도 수준",
+    "english": "Capability Maturity Model Integration",
+    "easy": "조직의 프로세스를 개선하고 역량·성과 수준을 평가하는 체계입니다.",
+    "definition": "전통적으로 성숙도 1~5의 Initial·Managed·Defined·Quantitatively Managed·Optimizing을 구분한다.",
+    "formula": "초기 → 관리 → 정의 → 정량적 관리 → 최적화",
+    "example": "프로젝트별 관리에서 전사 표준화와 정량적 관리로 발전한다.",
+    "exam": "ADsP 분석 성숙도 4단계와 직접 동일시하지 않는다.",
+    "trap": "현행 CMMI 공식 안내에는 0(Incomplete)도 제시된다. capability level과 maturity level도 구별한다.",
+    "keywords": [
+      "CMMI",
+      "성숙도"
+    ]
+  },
+  {
+    "id": "maturity",
+    "category": "G",
+    "subject": 2,
+    "title": "ADsP 분석 성숙도 4단계",
+    "english": "Analytics maturity",
+    "easy": "분석을 시작해 업무에 쓰고, 전사로 넓혀 혁신하는 순서입니다.",
+    "definition": "분석 성숙도를 비즈니스·조직역량·IT 부문에서 평가하는 ADsP 학습 분류이다.",
+    "formula": "도입 → 활용 → 확산 → 최적화",
+    "example": "도입: 기반 구축 / 활용: 업무 적용 / 확산: 전사 관리·공유 / 최적화: 혁신·성과 향상.",
+    "exam": "CMMI의 전통적 5단계와 ADsP 4단계를 구분한다.",
+    "trap": "준비도와 성숙도 조합의 준비형·도입형·정착형·확산형은 별도의 4분면 유형이다.",
+    "keywords": [
+      "성숙도",
+      "도입 단계",
+      "확산",
+      "최적화"
+    ]
+  },
+  {
+    "id": "maturity-1",
+    "category": "G",
+    "subject": 2,
+    "title": "도입 단계",
+    "english": "Introduction",
+    "easy": "분석을 시작하고 환경·기반·시스템을 구축한다.",
+    "definition": "분석을 시작하고 환경·기반·시스템을 구축한다.",
+    "formula": "도입 → 활용 → 확산 → 최적화",
+    "example": "일부 부서가 실적 분석과 통계 보고를 수행한다.",
+    "exam": "비즈니스·조직역량·IT의 관점에서 특징을 구분한다.",
+    "trap": "CMMI의 같은 번호 수준과 일대일 대응시키지 않는다.",
+    "keywords": [
+      "성숙도",
+      "도입"
+    ]
+  },
+  {
+    "id": "maturity-2",
+    "category": "G",
+    "subject": 2,
+    "title": "활용 단계",
+    "english": "Utilization",
+    "easy": "분석 결과를 실제 업무에 적용한다.",
+    "definition": "분석 결과를 실제 업무에 적용한다.",
+    "formula": "도입 → 활용 → 확산 → 최적화",
+    "example": "전문 담당부서와 예측·시뮬레이션·대시보드를 활용한다.",
+    "exam": "비즈니스·조직역량·IT의 관점에서 특징을 구분한다.",
+    "trap": "CMMI의 같은 번호 수준과 일대일 대응시키지 않는다.",
+    "keywords": [
+      "성숙도",
+      "활용"
+    ]
+  },
+  {
+    "id": "maturity-3",
+    "category": "G",
+    "subject": 2,
+    "title": "확산 단계",
+    "english": "Diffusion",
+    "easy": "전사 차원에서 분석을 관리하고 공유한다.",
+    "definition": "전사 차원에서 분석을 관리하고 공유한다.",
+    "formula": "도입 → 활용 → 확산 → 최적화",
+    "example": "전사 성과의 실시간 분석과 분석 COE 운영을 고려한다.",
+    "exam": "비즈니스·조직역량·IT의 관점에서 특징을 구분한다.",
+    "trap": "CMMI의 같은 번호 수준과 일대일 대응시키지 않는다.",
+    "keywords": [
+      "성숙도",
+      "확산"
+    ]
+  },
+  {
+    "id": "maturity-4",
+    "category": "G",
+    "subject": 2,
+    "title": "최적화 단계",
+    "english": "Optimization",
+    "easy": "분석을 진화시켜 혁신과 성과 향상에 기여한다.",
+    "definition": "분석을 진화시켜 혁신과 성과 향상에 기여한다.",
+    "formula": "도입 → 활용 → 확산 → 최적화",
+    "example": "경영진의 전략 연계와 비즈니스 모델 진화를 추진한다.",
+    "exam": "비즈니스·조직역량·IT의 관점에서 특징을 구분한다.",
+    "trap": "CMMI의 같은 번호 수준과 일대일 대응시키지 않는다.",
+    "keywords": [
+      "성숙도",
+      "최적화"
+    ]
+  },
+  {
+    "id": "corpus",
+    "category": "A",
+    "subject": 3,
+    "title": "코퍼스와 토큰",
+    "english": "Corpus / token",
+    "easy": "코퍼스는 분석할 텍스트의 집합, 토큰은 나눈 분석 단위입니다.",
+    "definition": "원시 텍스트든 전처리된 텍스트든 목적에 맞게 모은 말뭉치를 코퍼스라고 한다.",
+    "formula": "문서 집합 → 토큰화 → 토큰들",
+    "example": "리뷰 1만 개가 코퍼스, 단어·형태소·부분단어가 토큰이 될 수 있다.",
+    "exam": "코퍼스는 데이터마이닝 이전의 비구조화 단계를 뜻하지 않는다.",
+    "trap": "코퍼스가 반드시 비정형 상태로만 존재하는 것은 아니다.",
+    "keywords": [
+      "코퍼스",
+      "텍스트",
+      "토큰"
+    ]
+  }
+]
